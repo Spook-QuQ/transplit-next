@@ -3,11 +3,11 @@ import Link from 'next/link'
 
 import Header from './parts/Header'
 
-type Props = {
+type PropsType = {
   children: React.ReactNode
 }
 
-const defaultLayout: React.FC<Props> = ({ children }) => {
+const defaultLayout: React.FC<PropsType> = ({ children }) => {
   return (
     <>
       <Header />
