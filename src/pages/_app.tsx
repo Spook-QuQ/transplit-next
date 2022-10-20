@@ -3,20 +3,14 @@ import { AppProps } from 'next/app'
 import React from 'react'
 import DefaultLayout from '@/components/layouts/Default'
 
-type LayoutPropsType = {
-  children: React.ReactNode
-}
-
-type PageComponentType = {
-  _getLayout?: () => React.FC
-}
-
 type PageComponent = {
-  Component: React.FC & PageComponentType;
+  Component: {
+    _getLayout?: () => React.FC
+  }
 }
 
 const MyApp: React.FC<AppProps & PageComponent> = ({ Component, pageProps }) => {
-  const Layout: React.FC<LayoutPropsType> = (Component._getLayout && Component._getLayout()) || DefaultLayout
+  const Layout: React.FC<{ children: React.ReactNode }> = (Component._getLayout && Component._getLayout()) || DefaultLayout
 
   return (
     <Layout>
