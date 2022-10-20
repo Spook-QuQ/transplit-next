@@ -1,8 +1,12 @@
 import { NextComponentType, NextPageContext } from 'next'
 
 import Link from 'next/link'
+import { useRouter, NextRouter } from 'next/router'
 
-const Information: (NextComponentType<NextPageContext>) = () => {
+const Information: (NextComponentType<NextPageContext>) = ({  }) => {
+  // const router: NextRouter = useRouter()
+  // console.log(router)
+  
   return (
     <div>
       <h3
@@ -13,7 +17,9 @@ const Information: (NextComponentType<NextPageContext>) = () => {
           font-semibold
           font-serif
         "
-      >Test</h3>
+      >Information{
+        // router.pathname
+      }</h3>
       <Link href='/'>
         <a>Home</a>
       </Link>

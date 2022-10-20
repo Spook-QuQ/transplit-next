@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import { AppProps } from 'next/app'
 import React from 'react'
-import DefaultLayout from '@/components/layouts/Default'
+import DefaultLayout from '@/components/layouts/Default/index'
 
 type PageComponent = {
   Component: {

@@ -1,6 +1,7 @@
 import React from 'react'
-
 import Link from 'next/link'
+
+import Header from './parts/Header'
 
 type Props = {
   children: React.ReactNode
@@ -9,10 +10,7 @@ type Props = {
 const defaultLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <h1>DefaultLayout</h1>
-      <Link href="/information">
-        <a>Information</a>
-      </Link>
+      <Header />
       <div>{children}</div>
     </>
   )
