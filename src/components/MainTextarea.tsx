@@ -2,6 +2,8 @@ import { SetStateAction, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as resultModule from '@/store/modules/result'
 
+const waitTime: number = 1000 * 2
+
 type PropsType = {}
 const MainTextarea: React.FC<PropsType> = () => {
   const [inputValue, setInputValue] = useState<string>('')
@@ -27,7 +29,7 @@ const MainTextarea: React.FC<PropsType> = () => {
           // dispatch(resultModule.toggleIsRequesting())
           dispatch(resultModule.requestTranslate())
           setIsTimingOut(false)
-        }, 1000 * 3),
+        }, waitTime),
       )
     } else {
       clearInterval(isTimingOut)
@@ -40,12 +42,15 @@ const MainTextarea: React.FC<PropsType> = () => {
 
   return (
     <textarea
+      placeholder='テキストを入力'
       rows={8}
       className='
         resize-auto
-        bg-slate-900
+        bg-stone-900
         border
-        border-slate-600
+        border-stone-600
+        rounded-lg
+        p-4
       '
       value={inputValue}
       onChange={onChangeHandler}
