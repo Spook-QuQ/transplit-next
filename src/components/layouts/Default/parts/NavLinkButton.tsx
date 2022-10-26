@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { useRouter, NextRouter } from 'next/router'
 
 type PropsType = {
-  name: string;
-  path: string;
+  name: string
+  path: string
 }
 
 const NavLinkButton: React.FC<PropsType> = ({ name, path }) => {
@@ -22,7 +22,9 @@ const NavLinkButton: React.FC<PropsType> = ({ name, path }) => {
           transition-color
           duration-300
         `}
-      >{name}</a>
+      >
+        {name}
+      </a>
     </Link>
   )
 }
