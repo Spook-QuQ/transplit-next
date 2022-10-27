@@ -13,7 +13,6 @@ const NavBar: React.FC<PropsType> = () => {
         className="
           flex
           gap-2
-          p-2
         "
       >
         {routes.map(route => {
