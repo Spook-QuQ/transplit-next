@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 
+import WordBlock from '@/components/WordBlock'
+
 const DisplayArea: React.FC = () => {
   const status = useSelector((state: any) => state.result.status)
   const isRequesting = useSelector((state: any) => state.result.isRequesting)
@@ -7,9 +9,11 @@ const DisplayArea: React.FC = () => {
   return (
     <div
       className='
-        bg-slate-900
+        bg-stone-900
         border
-        border-slate-600
+        border-stone-600
+        rounded-lg
+        p-4
       '
     >
       {isRequesting && (
@@ -17,7 +21,6 @@ const DisplayArea: React.FC = () => {
           className='
             flex
             items-center gap-2
-            p-2
           '
         >
           <span
@@ -41,6 +44,10 @@ const DisplayArea: React.FC = () => {
           </span>
         </div>
       )}
+      <div>
+        <WordBlock rsWord='sushi' pvWord='寿司' />
+        <WordBlock rsWord='mushroom' pvWord='きのこ' />
+      </div>
     </div>
   )
 }
