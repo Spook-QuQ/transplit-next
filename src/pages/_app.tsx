@@ -5,13 +5,13 @@ import DefaultLayout from '@/components/layouts/Default/index'
 import { Provider } from 'react-redux'
 import store from '@/store'
 
-type PageComponent = {
+type PageComponentCustomProps = {
   Component: {
     _getLayout?: () => React.FC
   }
 }
 
-const MyApp: React.FC<AppProps & PageComponent> = ({
+const MyApp: React.FC<AppProps & PageComponentCustomProps> = ({
   Component,
   pageProps,
 }) => {
