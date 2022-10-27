@@ -129,7 +129,7 @@
   "resolved" "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
 
-"@types/node@^18.11.2":
+"@types/node@*", "@types/node@^18.11.2":
   "integrity" "sha512-BWN3M23gLO2jVG8g/XHIRFWiiV4/GckeFIqbU/C4V3xpoBBWSMk4OZomouN0wCkfQFPqgZikyLr7DOYDysIkkw=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.11.2.tgz"
   "version" "18.11.2"
@@ -157,6 +157,13 @@
   "integrity" "sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA=="
   "resolved" "https://registry.npmjs.org/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz"
   "version" "0.0.3"
+
+"@types/xml2json@^0.11.4":
+  "integrity" "sha512-8kJ61xI/G8r6aJZB1am4kCPZWNhNSU+wM8nNld4zBorlkFYPp2jikug4m07tVtEAm417hDvlVExL3Kmyf36zBQ=="
+  "resolved" "https://registry.npmjs.org/@types/xml2json/-/xml2json-0.11.4.tgz"
+  "version" "0.11.4"
+  dependencies:
+    "@types/node" "*"
 
 "@typescript-eslint/parser@^5.21.0":
   "integrity" "sha512-/F63giJGLDr0ms1Cr8utDAxP2SPiglaD6V+pCOcG35P2jCqdfR7uuEhz1GIC3oy4hkUF8xA1XSXmd9hOh/a5EA=="
