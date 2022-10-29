@@ -8,7 +8,7 @@ type PropsType = {}
 const MainTextarea: React.FC<PropsType> = () => {
   const [inputValue, setInputValue] = useState<string>('')
   const [isTimingOut, setIsTimingOut] = useState<any>(null)
-  const isRequesting = useSelector<resultModule.InitialStateProps>(
+  const isRequesting = useSelector<resultModule.InitialStateType>(
     (state) => state.isRequesting,
   )
 
@@ -27,7 +27,7 @@ const MainTextarea: React.FC<PropsType> = () => {
         setTimeout(() => {
           console.log('requesting')
           // dispatch(resultModule.toggleIsRequesting())
-          dispatch(resultModule.requestTranslate())
+          dispatch(resultModule.requestTranslate(inputValue))
           setIsTimingOut(false)
         }, waitTime),
       )
