@@ -1,40 +1,90 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { create } from 'domain'
 
-export type InitialStateProps = {
-  result: any[]
+import {
+  PostForTranslate,
+  // WordResult,
+  // ParsedWord,
+  TranslateResult,
+} from '@/types/translateAPI'
+
+export type InitialStateType = {
+  result: TranslateResult
   isRequesting: boolean
   status: string
   langs: string[]
   currentLang: 'ja'
 }
 
-const initialState: InitialStateProps = {
-  result: [],
+const initialState: InitialStateType = {
+  result: {
+    source: [],
+    target: [],
+  },
   isRequesting: false,
   status: '',
   langs: ['ja', 'en'],
-  currentLang: 'ja'
+  currentLang: 'ja',
 }
 
-const requestTranslate = createAsyncThunk('result/request', async () => {
-  // 非同期処理
-  return await new Promise((resolve) => {
-    setTimeout(resolve, 2000)
-  })
-})
+const requestTranslate = createAsyncThunk<
+  // Return type of the payload creator
+  TranslateResult,
+  // First argument to the payload creator
+  // 補足：このコードで言う "inputValue" の型について言っている↓
+  // dispatch(resultModule.requestTranslate(inputValue))>
+  string,
+  {
+    // Optional fields for defining thunkApi field types
+    // dispatch: ~
+    state: InitialStateType
+    // extra: {
+    //   jwt: string
+    // }
+  }
+>(
+  'result/request',
+  // payloadCreator
+  async (inputValue /* ← arg */, ThunkAPI) => {
+    const state: InitialStateType = ThunkAPI.getState()
+
+    const body: PostForTranslate = {
+      text: inputValue,
+      language: {
+        target: 'ja',
+        source: 'en',
+      },
+    }
+
+    const res = await fetch('/api/translate', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    if (res.status !== 200) throw new Error('Error: ' + res.status)
+
+    return (await res.json()) as TranslateResult
+  },
+)
 
 // ここでは純粋関数でなくても良い
 const result = createSlice({
   name: 'result',
   initialState,
   reducers: {
-    set(state, { type, payload }) {
-      console.log(type)
-      if (Array.isArray(payload)) state.result = payload
+    set(state, { /* type, */ payload }) {
+      if (typeof payload === 'object' && payload.target && payload.source) {
+        state.result = payload
+      }
     },
-    deleteInput(state, { type /*, payload */ }) {
-      state.result = []
+    deleteInput(
+      state,
+      {
+        /* type, payload */
+      },
+    ) {
+      state.result.source = []
+      state.result.target = []
     },
     toggleIsRequesting(state) {
       state.isRequesting != state.isRequesting
