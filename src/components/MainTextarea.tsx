@@ -1,16 +1,13 @@
 import { SetStateAction, useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import * as resultModule from '@/store/modules/result'
-
-const waitTime: number = 1000 * 2
+import { useDispatch } from 'react-redux'
+import * as translateModule from '@/store/modules/translate'
 
 type PropsType = {}
 const MainTextarea: React.FC<PropsType> = () => {
+  const waitTime: number = 1000 * 2
+
   const [inputValue, setInputValue] = useState<string>('')
   const [isTimingOut, setIsTimingOut] = useState<any>(null)
-  const isRequesting = useSelector<resultModule.InitialStateType>(
-    (state) => state.isRequesting,
-  )
 
   const dispatch = useDispatch<any>()
 
@@ -27,7 +24,8 @@ const MainTextarea: React.FC<PropsType> = () => {
         setTimeout(() => {
           console.log('requesting')
           // dispatch(resultModule.toggleIsRequesting())
-          dispatch(resultModule.requestTranslate(inputValue))
+          dispatch(translateModule.deleteInput())
+          dispatch(translateModule.requestTranslate(inputValue))
           setIsTimingOut(false)
         }, waitTime),
       )

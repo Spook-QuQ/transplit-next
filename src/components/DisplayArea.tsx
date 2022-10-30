@@ -1,10 +1,21 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import * as translateModule from '@/store/modules/translate'
 
 import WordBlock from '@/components/WordBlock'
 
 const DisplayArea: React.FC = () => {
-  const status = useSelector((state: any) => state.result.status)
-  const isRequesting = useSelector((state: any) => state.result.isRequesting)
+  const status = useSelector<
+    { translate: translateModule.InitialStateType },
+    translateModule.InitialStateType['status']
+  >((state) => state.translate.status)
+  const isRequesting = useSelector<
+    { translate: translateModule.InitialStateType },
+    translateModule.InitialStateType['isRequesting']
+  >((state) => state.translate.isRequesting)
+  const result = useSelector<
+    { translate: translateModule.InitialStateType },
+    translateModule.InitialStateType['result']
+  >((state) => state.translate.result)
 
   return (
     <div
@@ -45,8 +56,65 @@ const DisplayArea: React.FC = () => {
         </div>
       )}
       <div>
-        <WordBlock rsWord='sushi' pvWord='寿司' />
-        <WordBlock rsWord='mushroom' pvWord='きのこ' />
+        {/* <pre className='whitespace-pre'>{JSON.stringify(result, null, 2)}</pre> */}
+        {(result.source.length &&
+          result.target.length && [
+            <div key='source' className='pb-4'>
+              <p>
+                <small
+                  className='
+                    bg-orange-400
+                    text-black
+                    font-bold
+                    px-[4px]
+                    py-[1px]
+                    rounded-sm
+                    inline-block
+                    mb-2
+                  '
+                >
+                  Source
+                </small>
+              </p>
+              {result.source.map(({ translatedWord, word }, i) => {
+                return (
+                  <WordBlock
+                    key={word + i}
+                    rsWord={translatedWord}
+                    pvWord={word}
+                  />
+                )
+              })}
+            </div>,
+            <div key='target'>
+              <p>
+                <small
+                  className='
+                    bg-sky-400
+                    text-black
+                    font-bold
+                    px-[4px]
+                    py-[1px]
+                    rounded-sm
+                    inline-block
+                    mb-2
+                  '
+                >
+                  Result
+                </small>
+              </p>
+              {result.target.map(({ translatedWord, word }, i) => {
+                return (
+                  <WordBlock
+                    key={word + i}
+                    rsWord={translatedWord}
+                    pvWord={word}
+                  />
+                )
+              })}
+            </div>,
+          ]) ||
+          false}
       </div>
     </div>
   )

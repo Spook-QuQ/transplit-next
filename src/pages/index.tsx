@@ -13,7 +13,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <div className='grid grid-cols-2 gap-4'>
+        <div className='grid md:grid-cols-2 grid-cols-1 gap-4'>
           <MainTextArea />
           <DisplayArea />
         </div>

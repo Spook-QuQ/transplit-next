@@ -45,19 +45,21 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
         className={`
           inline-block
           border-b-2
+          border-solid
           ${
             /* isClicked */ dropdown
-              ? 'border-solid border-sky-500 bg-sky-800'
-              : 'border-dashed border-stone-700'
+              ? 'border-sky-500 bg-sky-800'
+              : 'border-stone-500'
           }
-          p-1
+          py-1
+          px-[1px]
         `}
         // onBlur={onBlurHandler}
       >
-        {rsWord}
+        {pvWord}
       </button>
       <Transition in={dropdown} timeout={{
-        enter: 0,
+        enter: 20,
         exit: 200,
       }}>
         {(state: string) => {
@@ -77,7 +79,7 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
                   ${state.match(/(entered)/) ? 'translate-y-2 opacity-1 z-10' : 'opacity-0'}
                 `}
               >
-                {[pvWord, rsWord].map((word, i) => (
+                {[rsWord, pvWord].map((word, i) => (
                   <React.Fragment key={pvWord + i}>
                     <p
                       className='
