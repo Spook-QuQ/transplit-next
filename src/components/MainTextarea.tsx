@@ -32,6 +32,7 @@ const MainTextarea: React.FC<PropsType> = () => {
     } else {
       clearInterval(isTimingOut)
       setIsTimingOut(false)
+      dispatch(translateModule.deleteInput())
     }
 
     // ↓ ESLintのルールを無視する
