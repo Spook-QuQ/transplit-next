@@ -13,6 +13,8 @@ const NavLinkButton: React.FC<PropsType> = ({ name, path }) => {
       <a
         className={`
           underline
+          text-sm
+          font-black
           decoration-4
           ${
             router.pathname === path

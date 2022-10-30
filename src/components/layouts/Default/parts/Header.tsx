@@ -1,12 +1,16 @@
+import Link from 'next/link'
 import NavBar from './NavBar'
 
-type PropsType = {
-
-}
+type PropsType = {}
 
 const Header: React.FC<PropsType> = () => {
   return (
-    <header>
+    <header className='flex justify-between items-center cursor-pointer'>
+      <Link href='/'>
+        <h1 className='a text-2xl font-black duration-300 hover:text-sky-400'>
+          Transplit
+        </h1>
+      </Link>
       <NavBar />
     </header>
   )

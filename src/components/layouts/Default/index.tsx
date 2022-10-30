@@ -10,11 +10,11 @@ type PropsType = {
 
 const defaultLayout: React.FC<PropsType> = ({ children }) => {
   return (
-    <>
+    <div className='p-4 md:p-8'>
       <Header />
       <main>{children}</main>
       <Footer />
-    </>
+    </div>
   )
 }
 
