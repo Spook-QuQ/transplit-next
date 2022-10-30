@@ -2,7 +2,7 @@ import { Transition, SwitchTransition } from 'react-transition-group'
 import * as translateModule from '@/store/modules/translate'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { HiOutlineSwitchHorizontal } from 'react-icons/Hi'
+import { HiOutlineSwitchHorizontal } from 'react-icons/hi'
 
 type TranstionNamePropsType = {
   name: string
