@@ -11,8 +11,14 @@ export type InitialStateType = {
   result: TranslateResult
   isRequesting: boolean
   status: string
-  langs: string[]
-  currentLang: 'ja'
+  langs: {
+    code: string
+    name: string
+  }[]
+  currentLangPair: {
+    source: string
+    target: string
+  }
 }
 
 const initialState: InitialStateType = {
@@ -22,8 +28,17 @@ const initialState: InitialStateType = {
   },
   isRequesting: false,
   status: '',
-  langs: ['ja', 'en'],
-  currentLang: 'ja',
+  langs: [
+    {
+      code: 'ja',
+      name: 'Japanese',
+    },
+    {
+      code: 'en',
+      name: 'English',
+    },
+  ],
+  currentLangPair: { source: 'ja', target: 'en' },
 }
 
 const requestTranslate = createAsyncThunk<
@@ -36,7 +51,7 @@ const requestTranslate = createAsyncThunk<
   {
     // Optional fields for defining thunkApi field types
     // dispatch: ~
-    state: InitialStateType
+    state: { translate: InitialStateType }
     // extra: {
     //   jwt: string
     // }
@@ -45,13 +60,15 @@ const requestTranslate = createAsyncThunk<
   'result/request',
   // payloadCreator
   async (inputValue /* ← arg */, ThunkAPI) => {
-    const state: InitialStateType = ThunkAPI.getState()
+    const state = ThunkAPI.getState()
+
+    const { source, target } = state.translate.currentLangPair
 
     const body: PostForTranslate = {
       text: inputValue,
       language: {
-        target: 'ja',
-        source: 'en',
+        source,
+        target,
       },
     }
 
@@ -87,6 +104,12 @@ const result = createSlice({
     toggleIsRequesting(state) {
       state.isRequesting != state.isRequesting
     },
+    switchPair(state) {
+      const source = state.currentLangPair.source
+      const target = state.currentLangPair.target
+      state.currentLangPair.source = target
+      state.currentLangPair.target = source
+    },
   },
   extraReducers(builder) {
     builder
@@ -107,7 +130,13 @@ const result = createSlice({
   },
 })
 
-const { /* set, */ deleteInput, toggleIsRequesting } = result.actions
+const { /* set, */ deleteInput, toggleIsRequesting, switchPair } =
+  result.actions
 
-export { /* set, */ deleteInput, toggleIsRequesting, requestTranslate }
+export {
+  /* set, */ deleteInput,
+  toggleIsRequesting,
+  requestTranslate,
+  switchPair,
+}
 export default result.reducer

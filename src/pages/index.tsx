@@ -1,5 +1,6 @@
 import Head from 'next/head'
 // import Image from 'next/image'
+import LanguageSwitch from '@/components/LanguageSwitch'
 import MainTextArea from '@/components/MainTextarea'
 import DisplayArea  from '@/components/DisplayArea'
 
@@ -13,6 +14,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
+        <LanguageSwitch />
         <div className='grid md:grid-cols-2 grid-cols-1 gap-4'>
           <MainTextArea />
           <DisplayArea />
