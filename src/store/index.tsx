@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import result from './modules/result'
+import translate from './modules/translate'
 
 const store = configureStore({
   reducer: {
-    result,
+    translate,
   },
 })
 

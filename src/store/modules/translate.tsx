@@ -72,16 +72,14 @@ const result = createSlice({
   name: 'result',
   initialState,
   reducers: {
-    set(state, { /* type, */ payload }) {
-      if (typeof payload === 'object' && payload.target && payload.source) {
-        state.result = payload
-      }
-    },
+    // set(state, { /* type, */ payload }) {
+    //   if (typeof payload === 'object' && payload.target && payload.source) {
+    //     state.result = payload
+    //   }
+    // },
     deleteInput(
       state,
-      {
-        /* type, payload */
-      },
+      /* { type, payload },*/
     ) {
       state.result.source = []
       state.result.target = []
@@ -94,10 +92,12 @@ const result = createSlice({
     builder
       .addCase(requestTranslate.pending, (state) => {
         state.isRequesting = true
-        state.status = 'Requesting'
+        // state.status = 'Requesting'
+        state.status = 'Translating'
       })
-      .addCase(requestTranslate.fulfilled, (state /* action */) => {
-        // const { payload } = action
+      .addCase(requestTranslate.fulfilled, (state, action) => {
+        const { payload } = action
+        state.result = payload
         state.status = ''
         state.isRequesting = false
       })
@@ -107,7 +107,7 @@ const result = createSlice({
   },
 })
 
-const { set, deleteInput, toggleIsRequesting } = result.actions
+const { /* set, */ deleteInput, toggleIsRequesting } = result.actions
 
-export { set, deleteInput, toggleIsRequesting, requestTranslate }
+export { /* set, */ deleteInput, toggleIsRequesting, requestTranslate }
 export default result.reducer
