@@ -45,7 +45,8 @@ const MainTextarea: React.FC<PropsType> = () => {
       rows={8}
       className='
         resize-auto
-        bg-stone-900
+        bg-stone-100
+        dark:bg-stone-900
         border
         border-stone-600
         rounded-lg

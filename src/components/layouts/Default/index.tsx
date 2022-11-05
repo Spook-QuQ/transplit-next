@@ -1,5 +1,4 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { useEffect } from 'react'
 
 import Header from './parts/Header'
 import Footer from './parts/Footer'
@@ -8,7 +7,8 @@ type PropsType = {
   children: React.ReactNode
 }
 
-const defaultLayout: React.FC<PropsType> = ({ children }) => {
+const DefaultLayout: React.FC<PropsType> = ({ children }) => {
+
   return (
     <div className='p-4 md:p-8'>
       <Header />
@@ -18,4 +18,4 @@ const defaultLayout: React.FC<PropsType> = ({ children }) => {
   )
 }
 
-export default defaultLayout
+export default DefaultLayout

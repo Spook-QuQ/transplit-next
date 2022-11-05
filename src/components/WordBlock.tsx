@@ -48,7 +48,7 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
           border-solid
           ${
             /* isClicked */ dropdown
-              ? 'border-sky-500 bg-sky-800'
+              ? 'border-sky-500 bg-sky-200 dark:bg-sky-800'
               : 'border-stone-500'
           }
           py-1
@@ -58,25 +58,33 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
       >
         {pvWord}
       </button>
-      <Transition in={dropdown} timeout={{
-        enter: 20,
-        exit: 200,
-      }}>
+      <Transition
+        in={dropdown}
+        timeout={{
+          enter: 20,
+          exit: 200,
+        }}
+      >
         {(state: string) => {
           return (
-            (state !== 'exited') && (
+            state !== 'exited' && (
               <div
                 className={`
-                 bg-stone-700
+                  bg-stone-100
+                  dark:bg-stone-700
                   absolute
                   left-0
                   top-[100%]
                   whitespace-nowrap
                   divide-solid
                   divide-y
-                  divide-stone-700
+                  dark:divide-stone-700
                   duration-200
-                  ${state.match(/(entered)/) ? 'translate-y-2 opacity-1 z-10' : 'opacity-0'}
+                  ${
+                    state.match(/(entered)/)
+                      ? 'translate-y-2 opacity-1 z-10'
+                      : 'opacity-0'
+                  }
                 `}
               >
                 {[rsWord, pvWord].map((word, i) => (
@@ -87,8 +95,9 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
                         text-xl
                         p-4
                         border-l-8
-                        border-stone-700
-                        bg-stone-600
+                        dark:border-stone-700
+                        bg-stone-100
+                        dark:bg-stone-600
                       '
                     >
                       {word}
@@ -102,7 +111,8 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
                               w-full
                               p-4
                               flex
-                              hover:bg-stone-600
+                              hover:bg-stone-300
+                              dark:hover:bg-stone-600
                               items-center
                               justify-between
                             '

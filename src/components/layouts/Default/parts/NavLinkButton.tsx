@@ -19,7 +19,7 @@ const NavLinkButton: React.FC<PropsType> = ({ name, path }) => {
           ${
             router.pathname === path
               ? `text-sky-400`
-              : 'text-white decoration-gray-500 hover:decoration-gray-100'
+              : 'dark:text-white decoration-gray-500 hover:decoration-gray-100'
           }
           transition-color
           duration-300

@@ -20,7 +20,8 @@ const DisplayArea: React.FC = () => {
   return (
     <div
       className='
-        bg-stone-900
+        bg-stone-100
+        dark:bg-stone-900
         border
         border-stone-600
         rounded-lg
