@@ -70,7 +70,7 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
             state !== 'exited' && (
               <div
                 className={`
-                  bg-stone-100
+                  bg-stone-100 shadow-xl
                   dark:bg-stone-700
                   absolute
                   left-0
@@ -96,7 +96,7 @@ const WordBlock: React.FC<PropsType> = ({ rsWord, pvWord }) => {
                         p-4
                         border-l-8
                         dark:border-stone-700
-                        bg-stone-100
+                        bg-white
                         dark:bg-stone-600
                       '
                     >
